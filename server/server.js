@@ -9,10 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello, World!' });
+  res.send({ message: 'Hello, World!' });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
