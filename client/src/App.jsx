@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+
 import Intro from './components/intro/Intro';
 import Login from './components/auth/Login';
+import Signup from './components/auth/Signup';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -43,7 +45,7 @@ function App() {
               </span>
             </h5>
           </header>
-          <Login />
+          <Signup />
         </section>
       </>
     );
