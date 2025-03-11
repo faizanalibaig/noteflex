@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 
 import Intro from './components/intro/Intro';
-import Login from './components/auth/Login';
-import Signup from './components/auth/Signup';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -28,24 +26,12 @@ function App() {
   ) {
     return (
       <>
-        {/* <section className='w-screen h-screen'>
+        <section className='w-screen h-screen'>
           <section className='w-full h-full flex justify-center items-center'>
             <h1 className='text-2xl sm:text-3xl font-main font-bold text-[#005CE6]'>
               welcome to noteflex
             </h1>
           </section>
-        </section> */}
-        <section className='w-screen h-screen'>
-          <header className='h-[10%] flex justify-between items-center px-12'>
-            <h1 className='font-bold text-2xl font-main'>noteflex</h1>
-            <h5 className='font-medium text-sm font-secondary'>
-              new here?{' '}
-              <span className='underline underline-offset-2'>
-                create your account
-              </span>
-            </h5>
-          </header>
-          <Signup />
         </section>
       </>
     );
