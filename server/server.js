@@ -2,11 +2,16 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config;
 
+const dbconfig = require('./config/db.config');
+const AuthRoute = require('./routes/auth.route');
+
+dbconfig();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
+app.use('/auth', AuthRoute);
 
 app.get('/api/hello', (req, res) => {
   res.send({ message: 'Hello, World!' });
