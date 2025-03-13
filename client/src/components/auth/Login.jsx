@@ -1,37 +1,85 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+
+const initialState = {
+  email: '',
+  password: '',
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'email':
+      return { ...state, email: action.payload };
+    case 'password':
+      return { ...state, password: action.payload };
+    default:
+      return state;
+  }
+};
 
 function Login() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log('state: ', state);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await fetch('', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: state.email,
+          password: state.password,
+        }),
+      });
+
+      if (!user.ok) {
+        throw new Error('Failed to create user');
+      }
+      const data = await user.json();
+      console.log('user data: ', data);
+    } catch (error) {
+      throw new Error('Failed to create user');
+    }
+  };
   return (
     <section className='h-[90%] flex flex-col justify-center items-center gap-8'>
       <h1 className='text-2xl font-main font-bold'>Log in to Your Account</h1>
-      <form className='flex flex-col gap-2 font-secondary'>
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-col gap-2 font-secondary font-medium'
+      >
         <input
-          type='text'
+          type='email'
           placeholder='Enter your Email'
-          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] font-medium outline-none'
+          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C]outline-none'
+          onChange={(e) => dispatch({ type: 'email', payload: e.target.value })}
         />
         <input
           type='password'
           placeholder='Enter your Password'
-          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] font-medium outline-none'
+          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C]outline-none'
+          onChange={(e) =>
+            dispatch({ type: 'password', payload: e.target.value })
+          }
         />
-        <h5 className='text-sm font-medium cursor-pointer text-[#F37121]'>
+        <h5 className='text-sm cursor-pointer text-[#F37121]'>
           forgot password?
         </h5>
         <button
           type='submit'
-          className='mt-8 w-[26rem] p-3 rounded-lg bg-[#005CE6] text-white font-medium text-base'
+          className='mt-8 w-[26rem] p-3 rounded-lg bg-[#005CE6] text-white text-base'
         >
           Continue
         </button>
         <button
           type='submit'
-          className='border-2 border-[#CBD5E1]/10 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] text-white font-medium flex justify-center items-center gap-3'
+          className='border-2 border-[#CBD5E1]/10 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] text-white flex justify-center 
+          items-center gap-3'
         >
           <img src='/social-icon/google.png' className='h-5' />
-          <h1 className='text-black font-medium text-base'>
-            Continue with Google
-          </h1>
+          <h1 className='text-black text-base'>Continue with Google</h1>
         </button>
       </form>
       <p className='font-main text-center text-sm mt-6 text-[#5C626C]'>
