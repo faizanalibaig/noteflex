@@ -6,9 +6,9 @@ import App from './App.jsx';
 
 const query = new QueryClient();
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <QueryClientProvider client={query}>
+  <QueryClientProvider client={query}>
+    <StrictMode>
       <App />
-    </QueryClientProvider>
-  </StrictMode>
+    </StrictMode>
+  </QueryClientProvider>
 );
