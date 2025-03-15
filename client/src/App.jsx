@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Intro from './components/Intro/Intro';
+
 function App() {
   const [showIntro, setShowIntro] = useState(true);
 
