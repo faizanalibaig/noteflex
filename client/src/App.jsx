@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import Intro from './components/Intro/Intro';
 
+import GetStarted from './components/Home/Get-Started';
+import HomeHeader from './components/Home/Home-Header';
+
 function App() {
   const [showIntro, setShowIntro] = useState(true);
 
@@ -26,11 +29,13 @@ function App() {
     return (
       <>
         <section className='w-screen h-screen'>
-          <section className='w-full h-full flex justify-center items-center'>
+          {/* <section className='w-full h-full flex justify-center items-center'>
             <h1 className='text-2xl sm:text-3xl font-main font-bold text-[#005CE6]'>
               welcome to noteflex
             </h1>
-          </section>
+          </section> */}
+          <HomeHeader />
+          <GetStarted />
         </section>
       </>
     );
