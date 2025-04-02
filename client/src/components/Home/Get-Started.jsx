@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsArrowBarRight } from 'react-icons/bs';
 
 function GetStarted() {
   return (
@@ -19,9 +20,11 @@ function GetStarted() {
           </p>
         </div>
       </section>
-      <button className='absolute bottom-6 right-10 px-8 py-4 outline-none font-secondary font-medium'>
-        get started {'->'}
-      </button>
+      <div className='absolute bottom-10 right-12'>
+        <button className='flex items-center gap-2 outline-none font-secondary font-medium'>
+          <span>get started</span> <BsArrowBarRight />
+        </button>
+      </div>
     </section>
   );
 }
