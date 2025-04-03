@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Intro from './components/Intro/Intro';
 
-import GetStarted from './components/Home/Get-Started';
-import HomeHeader from './components/Home/Home-Header';
+import DashboardHeader from './components/Dashboard/Dashboard-Header';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -34,8 +34,8 @@ function App() {
               welcome to noteflex
             </h1>
           </section> */}
-          <HomeHeader />
-          <GetStarted />
+          <DashboardHeader />
+          <Dashboard />
         </section>
       </>
     );
