@@ -36,8 +36,8 @@ function App() {
             </h1>
           </section> */}
           <DashboardHeader />
-          {/* <Dashboard /> */}
-          <CreateNote />
+          <Dashboard />
+          {/* <CreateNote /> */}
         </section>
       </>
     );
