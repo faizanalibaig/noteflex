@@ -3,6 +3,7 @@ import Intro from './components/Intro/Intro';
 
 import DashboardHeader from './components/Dashboard/Dashboard-Header';
 import Dashboard from './components/Dashboard/Dashboard';
+import CreateNote from './components/Dashboard/Notes/CreateNote';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -35,7 +36,8 @@ function App() {
             </h1>
           </section> */}
           <DashboardHeader />
-          <Dashboard />
+          {/* <Dashboard /> */}
+          <CreateNote />
         </section>
       </>
     );
