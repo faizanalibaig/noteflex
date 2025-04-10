@@ -1,9 +1,6 @@
 import React from 'react';
 
 function CreateNote() {
-  const handle_note = (e) => {
-    e.preventDefault();
-  };
   return (
     <section className='px-12 py-5'>
       <form className='flex flex-col gap-2 mt-5'>
