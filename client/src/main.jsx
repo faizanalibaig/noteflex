@@ -10,9 +10,7 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <QueryClientProvider client={query}>
       <StrictMode>
-        <Routes>
-          <Route path='/' element={<App />} />
-        </Routes>
+        <App />
       </StrictMode>
     </QueryClientProvider>
   </BrowserRouter>

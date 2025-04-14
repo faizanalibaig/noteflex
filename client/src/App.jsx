@@ -4,6 +4,7 @@ import Intro from './components/Intro/Intro';
 import DashboardHeader from './components/Dashboard/Dashboard-Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import CreateNote from './components/Dashboard/Notes/CreateNote';
+import NoteRoutes from './routes/notes';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -19,7 +20,6 @@ function App() {
 
       shown();
     } else {
-      setShowIntro(false);
     }
   }, []);
 
@@ -35,8 +35,9 @@ function App() {
               welcome to noteflex
             </h1>
           </section> */}
-          <DashboardHeader />
-          <Dashboard />
+          {/* <DashboardHeader />
+          <Dashboard /> */}
+          <NoteRoutes />
           {/* <CreateNote /> */}
         </section>
       </>
