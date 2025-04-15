@@ -54,13 +54,13 @@ function Login() {
         <input
           type='email'
           placeholder='Enter your Email'
-          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C]outline-none'
+          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
           onChange={(e) => dispatch({ type: 'email', payload: e.target.value })}
         />
         <input
           type='password'
           placeholder='Enter your Password'
-          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C]outline-none'
+          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
           onChange={(e) =>
             dispatch({ type: 'password', payload: e.target.value })
           }
@@ -71,7 +71,7 @@ function Login() {
         <Link
           to='/dashboard'
           type='submit'
-          className='mt-8 w-[26rem] p-3 rounded-lg bg-[#005CE6] text-white text-base'
+          className='mt-8 w-[26rem] p-3 rounded-lg bg-[#005CE6] text-white text-base flex justify-center items-center'
         >
           Continue
         </Link>

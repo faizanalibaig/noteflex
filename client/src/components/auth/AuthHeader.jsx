@@ -1,7 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 function AuthHeader() {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <header className='h-[10%] flex justify-between items-center px-12'>
       <Link to='/' className='font-bold text-2xl font-main'>
@@ -9,9 +12,21 @@ function AuthHeader() {
       </Link>
       <h5 className='font-secondary text-base'>
         new here?{' '}
-        <span className='underline underline-offset-2 cursor-pointer'>
-          create your account
-        </span>
+        {location.pathname === '/auth/login' ? (
+          <Link
+            to='/auth/signup'
+            className='underline underline-offset-2 cursor-pointer'
+          >
+            create your account
+          </Link>
+        ) : (
+          <Link
+            to='/auth/login'
+            className='underline underline-offset-2 cursor-pointer'
+          >
+            login to your account
+          </Link>
+        )}
       </h5>
     </header>
   );
