@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { Link } from 'react-router';
 
 const initialState = {
   email: '',
@@ -67,12 +68,13 @@ function Login() {
         <h5 className='text-sm cursor-pointer text-[#F37121]'>
           forgot password?
         </h5>
-        <button
+        <Link
+          to='/dashboard'
           type='submit'
           className='mt-8 w-[26rem] p-3 rounded-lg bg-[#005CE6] text-white text-base'
         >
           Continue
-        </button>
+        </Link>
         <button
           type='submit'
           className='border-2 border-[#CBD5E1]/10 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] text-white flex justify-center 

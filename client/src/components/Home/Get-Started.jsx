@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsArrowBarRight } from 'react-icons/bs';
+import { Link } from 'react-router';
 
 function GetStarted() {
   return (
@@ -21,9 +22,12 @@ function GetStarted() {
         </div>
       </section>
       <div className='absolute bottom-10 right-12'>
-        <button className='flex items-center gap-2 outline-none font-secondary font-medium'>
+        <Link
+          to='/auth/login'
+          className='flex items-center gap-2 outline-none font-secondary font-medium'
+        >
           <span>get started</span> <BsArrowBarRight />
-        </button>
+        </Link>
       </div>
     </section>
   );
