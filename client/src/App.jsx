@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import Intro from './components/Intro/Intro';
-
-import DashboardHeader from './components/Dashboard/Dashboard-Header';
-import Dashboard from './components/Dashboard/Dashboard';
-import CreateNote from './components/Dashboard/Notes/CreateNote';
-import NoteRoutes from './routes/notes';
+import NoteRoutes from './routes/Notes';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
