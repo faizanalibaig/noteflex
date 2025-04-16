@@ -1,5 +1,5 @@
-import Login from './Login';
-import Signup from './Signup';
+import Login from './AuthLogin';
+import Signup from './AuthSignup';
 import AuthHeader from './AuthHeader';
 
 export { Login, Signup, AuthHeader };
