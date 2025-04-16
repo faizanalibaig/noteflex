@@ -41,7 +41,7 @@ function Login() {
       const data = await user.json();
       console.log('user data: ', data);
     } catch (error) {
-      throw new Error('Failed to create user');
+      throw new Error('Failed to create user', error.message);
     }
   };
   return (
