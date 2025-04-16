@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   }
 };
 
-function Signup() {
+const Signup = () => {
   const queryClient = useQueryClient();
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -128,6 +128,6 @@ function Signup() {
       </p>
     </section>
   );
-}
+};
 
 export default Signup;

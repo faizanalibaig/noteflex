@@ -5,7 +5,7 @@ import Dashboard from '../components/Dashboard/Dashboard';
 import DashboardLayout from '../layouts/DashboardLayout';
 import HomeLayout from '../layouts/HomeLayout';
 import AuthLayout from '../layouts/AuthLayout';
-import { Signup, Login } from '../components/Auth/index.js';
+import { Signup, Login } from '../components/Auth/Index.js';
 
 function NoteRoutes() {
   return (

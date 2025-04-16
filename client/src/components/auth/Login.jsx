@@ -17,7 +17,7 @@ const reducer = (state, action) => {
   }
 };
 
-function Login() {
+const Login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log('state: ', state);
 
@@ -91,6 +91,6 @@ function Login() {
       </p>
     </section>
   );
-}
+};
 
 export default Login;
