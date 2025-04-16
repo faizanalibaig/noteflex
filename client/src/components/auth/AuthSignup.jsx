@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   }
 };
 
-const Signup = () => {
+const AuthSignup = () => {
   const queryClient = useQueryClient();
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -130,4 +130,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AuthSignup;

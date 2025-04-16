@@ -5,15 +5,15 @@ import Dashboard from '../components/Dashboard/Dashboard';
 import DashboardLayout from '../layouts/DashboardLayout';
 import HomeLayout from '../layouts/HomeLayout';
 import AuthLayout from '../layouts/AuthLayout';
-import { Signup, Login } from '../components/Auth/index.js';
+import { AuthSignup, AuthLogin } from '../components/Auth/index.js';
 
 function NoteRoutes() {
   return (
     <Routes>
       <Route path='/' element={<HomeLayout />} />
       <Route path='auth' element={<AuthLayout />}>
-        <Route path='signup' element={<Signup />} />
-        <Route path='login' element={<Login />} />
+        <Route path='signup' element={<AuthSignup />} />
+        <Route path='login' element={<AuthLogin />} />
       </Route>
       <Route path='dashboard' element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
