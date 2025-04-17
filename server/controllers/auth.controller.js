@@ -1,26 +1,25 @@
-const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
+const hashpassword = require('../utils/hash-password');
+const comparepassword = require('../utils/compare-password');
 
 exports.register = async (req, res) => {
   try {
-    const data = req.body;
-    if (!data) {
-      return res.statu(400).send({
+    const { username, password, email, role } = req.body;
+    const check_user = await User.find({ email: email });
+
+    if (check_user) {
+      res.status(500).send({
         success: false,
-        message: 'The provided data for registration is not complete or valid',
+        message: 'User already exists ',
       });
     }
 
-    const { password, ...user_data } = data;
-    console.log('password: ', password);
-    const salt = await bcrypt.genSalt(10);
-    const hashed_password = await bcrypt.hash(password, salt);
-
-    console.log('Hashed Password: ', hashed_password);
-
+    const hashed_password = await hashpassword(password);
     const user = new User({
       password: hashed_password,
-      ...user_data,
+      email,
+      username,
+      role,
     });
     await user.save();
 
@@ -37,12 +36,37 @@ exports.register = async (req, res) => {
   }
 };
 
-// exports.find_user = async (req, res) => {
-//   const { id } = req.params;
-//   const { password } = req.body;
-//   const user = await User.findById(id);
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({
+      email: email,
+    });
 
-//   console.log('User: ', user, 'Password: ', password);
-//   const pass_compare = await bcrypt.compare(password, user?.password);
-//   console.log('User Password: ', pass_compare);
-// };
+    if (!user) {
+      res.status(500).send({
+        success: false,
+        message: 'User not found - please check your email',
+      });
+    }
+    const { password: hashed_password } = user;
+    const pass_compare = await comparepassword(password, hashed_password);
+
+    if (!pass_compare) {
+      res.status(500).send({
+        success: false,
+        message: 'Wrong password - please enter valid password',
+      });
+    }
+
+    return res.status(200).send({
+      success: true,
+      message: 'token',
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};

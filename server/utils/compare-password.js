@@ -5,3 +5,5 @@ async function comparepassword(password, hashed_password) {
 
   return valid;
 }
+
+module.exports = comparepassword;
