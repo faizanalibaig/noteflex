@@ -23,13 +23,14 @@ const reducer = (state, action) => {
   }
 };
 
-const AuthSignup = () => {
+// http://localhost:5000/auth/register
+const UserSignup = () => {
   const queryClient = useQueryClient();
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   const mutation = useMutation({
     mutationFn: async () => {
-      const response = await fetch('http://localhost:5000/auth/register', {
+      const response = await fetch('', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(state),
@@ -130,4 +131,4 @@ const AuthSignup = () => {
   );
 };
 
-export default AuthSignup;
+export default UserSignup;

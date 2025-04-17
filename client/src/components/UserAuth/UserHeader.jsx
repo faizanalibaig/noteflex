@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
 
-function AuthHeader() {
+function UserHeader() {
   const location = useLocation();
   console.log(location);
 
@@ -32,4 +32,4 @@ function AuthHeader() {
   );
 }
 
-export default AuthHeader;
+export default UserHeader;

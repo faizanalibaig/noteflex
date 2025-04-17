@@ -17,7 +17,7 @@ const reducer = (state, action) => {
   }
 };
 
-const AuthLogin = () => {
+const UserLogin = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log('state: ', state);
 
@@ -93,4 +93,4 @@ const AuthLogin = () => {
   );
 };
 
-export default AuthLogin;
+export default UserLogin;
