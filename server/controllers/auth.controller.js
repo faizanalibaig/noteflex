@@ -102,3 +102,19 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+exports.all_users = async (req, res) => {
+  try {
+    const user = await User.find();
+
+    return res.status(200).send({
+      success: true,
+      users: user,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
