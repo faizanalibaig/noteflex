@@ -1,11 +1,25 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-async function generate_token(payload) {
-  const secret = process.env.SECRET_KEY;
-  const options = { algorithm: 'HS512', expiresIn: '1d' };
+async function generateToken(payload) {
+  try {
+    const secret = process.env.SECRET_KEY;
 
-  return jwt.sign(payload, secret, options);
+    if (!secret) {
+      throw new Error('SECRET_KEY is not defined in environment variables');
+    }
+
+    const options = {
+      algorithm: 'HS512',
+      expiresIn: '1d',
+    };
+
+    const token = jwt.sign(payload, secret, options);
+    return token;
+  } catch (error) {
+    console.error('Error generating token:', error.message);
+    throw error;
+  }
 }
 
-module.exports = generate_token;
+module.exports = generateToken;
