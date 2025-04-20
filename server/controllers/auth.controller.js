@@ -5,6 +5,7 @@ const {
   ValidateUserRegistration,
   ValidateUserLogin,
 } = require('../validators/auth.validator');
+const generate_token = require('../utils/generate-token');
 
 exports.register = async (req, res) => {
   try {
@@ -59,6 +60,7 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    const token = await generate_token(req.body);
 
     const { error } = ValidateUserLogin({ email, password });
     if (error) {
@@ -91,8 +93,7 @@ exports.login = async (req, res) => {
 
     return res.status(200).send({
       success: true,
-      message: 'token',
-      user,
+      token: token,
     });
   } catch (error) {
     return res.status(500).send({
