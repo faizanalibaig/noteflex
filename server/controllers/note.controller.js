@@ -13,6 +13,9 @@ exports.create = async (req, res) => {
 
     const { error } = ValidateNote({ title });
 
+    const separate = title.charAt(0).toUpperCase() + title.slice(1);
+    console.log('SEPARATE: ', separate);
+
     if (error) {
       return res.status(400).send({
         success: false,
