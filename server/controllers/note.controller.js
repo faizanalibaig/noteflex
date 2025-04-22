@@ -1,8 +1,28 @@
 const Note = require('../models/note.model');
+const { ValidateNote } = require('../validators/note.validator');
 
 exports.create = async (req, res) => {
   try {
-    const note = await Note(req.body);
+    const { title } = req.body;
+    if (!title) {
+      return res.status(400).send({
+        success: false,
+        message: 'The required data is not provided',
+      });
+    }
+
+    const { error } = ValidateNote({ title });
+
+    if (error) {
+      return res.status(400).send({
+        success: false,
+        message:
+          'The provided data for note creation is not complete or invalid',
+        error: error?.details,
+      });
+    }
+
+    const note = await Note({ title });
     await note.save();
 
     res.status(201).send({

@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
       return res.status(400).send({
         success: false,
         message:
-          'The provided data for user registration is not complete or valid',
+          'The provided data for user registration is not complete or invalid',
         error: error?.details,
       });
     }
