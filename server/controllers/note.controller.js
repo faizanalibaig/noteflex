@@ -28,20 +28,27 @@ exports.create = async (req, res) => {
     const note = await Note({ title });
     await note.save();
 
-    res.status(201).send({
+   return res.status(201).send({
       success: true,
       data: note,
       message: 'Note created successfully',
     });
   } catch (error) {
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: 'Failed to create a note',
     });
   }
 };
 
-exports.findAll = async (req, res) => {};
+exports.findAll = async (req, res) => {
+ try{} catch(error){
+  res.status(500).send({
+   success: false,
+   message: 'Failed to retrieve all notes'
+})
+}
+};
 exports.findOne = async (req, res) => {};
 exports.deleteOne = async (req, res) => {};
 exports.deleteAll = async (req, res) => {};
