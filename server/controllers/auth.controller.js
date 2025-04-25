@@ -2,7 +2,9 @@ const {
   ValidateUserRegistration,
   ValidateUserLogin,
 } = require('../validators/auth.validator');
+
 const User = require('../models/user.model');
+const Blacklist = require('../models/blacklist.model');
 
 exports.register = async (req, res) => {
   try {
@@ -98,19 +100,31 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logout = async (req, res, next) => {
+exports.logout = async (req, res) => {
   try {
-    console.log('REQ: ', req);
-    req.logout((err) => {
-      if (err) {
-        return next(err);
-      }
+    let token =
+      req.body.token || req.headers['authorization'] || req.cookies.token;
 
-      res.status(200).send({
-        success: true,
-        message: 'Logged out successfully',
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: 'Access denied. No token provided.',
       });
-    });
+    }
+
+    if (token.startsWith('Bearer ')) {
+      token = token.split(' ')[1];
+    }
+
+    const checkIfBlacklisted = await Blacklist.findOne({ token: token });
+    if (checkIfBlacklisted) {
+      return res.status(204);
+    }
+
+    const blacklist = new Blacklist({ token: token });
+    await blacklist.save();
+
+    res.status(200).send({ success: true, message: 'You are logged out!' });
   } catch (error) {
     return res.status(500).send({
       success: false,
@@ -122,7 +136,7 @@ exports.logout = async (req, res, next) => {
 exports.all_users = async (req, res) => {
   try {
     const user = await User.find();
-
+    console.log('REQUEST USER: ', req.user);
     return res.status(200).send({
       success: true,
       users: user,
