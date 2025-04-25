@@ -61,7 +61,6 @@ const UserSchema = new mongoose.Schema(
 
 UserSchema.pre('save', async function (next) {
   const user = this;
-  console.log('USER: ', user);
   try {
     if (user.isModified('password') || user.isNew) {
       const salt = await bcrypt.genSalt(10);
@@ -82,7 +81,7 @@ UserSchema.methods.incrementlogin = function () {
   return this.save();
 };
 
-UserSchema.methods.compare = function (password) {
+UserSchema.methods.comparepassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
@@ -90,6 +89,7 @@ UserSchema.methods.generatetoken = function () {
   const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: '1d',
   });
+  console.log('USER: ', this, 'TOKEN: ', token);
 
   return token;
 };
