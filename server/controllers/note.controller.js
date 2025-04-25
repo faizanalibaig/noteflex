@@ -28,7 +28,7 @@ exports.create = async (req, res) => {
     const note = await Note({ title });
     await note.save();
 
-   return res.status(201).send({
+    return res.status(201).send({
       success: true,
       data: note,
       message: 'Note created successfully',
@@ -41,15 +41,84 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.findAll = async (req, res) => {
- try{} catch(error){
-  res.status(500).send({
-   success: false,
-   message: 'Failed to retrieve all notes'
-})
-}
+exports.retrieve = async (req, res) => {
+  try {
+    const { id } = req.param;
+    const note = await Note.findById(id);
+    if (!note) {
+      return res.status(500).send({
+        success: false,
+        message: 'Failed to find the note',
+      });
+    }
+
+    return res.status(200).send({
+      success: true,
+      data: note,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: 'Failed to retrieve the note',
+    });
+  }
 };
-exports.findOne = async (req, res) => {};
-exports.deleteOne = async (req, res) => {};
-exports.deleteAll = async (req, res) => {};
-exports.update = async (req, res) => {};
+
+exports.retrieveAll = async (req, res) => {
+  try {
+    const notes = await Note.find();
+    if (!notes) {
+      return res.status(500).send({
+        success: false,
+        message:
+          'Not a single note is created yet - please write your first note',
+      });
+    }
+
+    return res.status(200).send({
+      success: true,
+      data: notes,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: 'Failed to retrieve all notes',
+    });
+  }
+};
+
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.param;
+    const data = req.body;
+
+    const note = await Note.findByIdAndUpdate(id, data, { new: true });
+
+    return res.status(200).send({
+      success: true,
+      data: note,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: 'Failed to update the note',
+    });
+  }
+};
+
+exports.delete = async (req, res) => {
+  try {
+    const { id } = req.param;
+    const note = await Note.findByIdAndDelete(id);
+
+    return res.status(200).send({
+      success: true,
+      data: note,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: 'Failed to delete the note',
+    });
+  }
+};

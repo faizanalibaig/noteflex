@@ -124,7 +124,9 @@ exports.logout = async (req, res) => {
     const blacklist = new Blacklist({ token: token });
     await blacklist.save();
 
-    res.status(200).send({ success: true, message: 'You are logged out!' });
+    return res
+      .status(200)
+      .send({ success: true, message: 'You are logged out!' });
   } catch (error) {
     return res.status(500).send({
       success: false,
