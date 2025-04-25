@@ -35,9 +35,9 @@ exports.register = async (req, res) => {
       });
     }
 
-    const hashed_password = await hashpassword(password);
+    // const hashed_password = await hashpassword(password);
     const user = new User({
-      password: hashed_password,
+      password,
       email,
       username,
       role,
