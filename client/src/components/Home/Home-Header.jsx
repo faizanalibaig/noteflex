@@ -14,10 +14,15 @@ function HomeHeader() {
   }, []);
 
   return (
-    <header className='h-[10%] flex justify-between items-center px-12 border border-b-[1px] border-black/5'>
-      <h1 className='font-bold text-2xl font-main'>noteflex</h1>
+    <header className='h-[10%] flex justify-between items-center px-5 sm:px-8 lg:px-10 xl:px-12 border border-b-[1px] border-black/5'>
+      <h1 className='font-bold text-lg lg:text-xl xl:text-2xl font-main'>
+        noteflex
+      </h1>
       <nav>
-        <ul className='flex gap-8 font-secondary text-base' ref={menu_ref}>
+        <ul
+          className='hidden lg:flex gap-8 font-secondary lg:text-sm xl:text-base'
+          ref={menu_ref}
+        >
           {menu_list.map((list, index) => (
             <li key={index}>{list}</li>
           ))}
