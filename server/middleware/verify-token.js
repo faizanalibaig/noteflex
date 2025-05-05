@@ -32,11 +32,11 @@ async function verifyToken(req, res, next) {
     const decoded = jwt.verify(token, secret);
 
     const { id } = decoded;
-    const user = await User.findById(id);
-    const { password, loginCount, __v, createdAt, updatedAt, ...data } =
-      user._doc;
+    const user = await User.findById(id).select(
+      '-password -__v -loginCount -createdAt -updatedAt'
+    );
 
-    req.user = data;
+    req.user = user._doc;
     next();
   } catch (error) {
     return res.status(401).send({

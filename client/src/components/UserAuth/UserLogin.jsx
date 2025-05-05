@@ -46,21 +46,23 @@ const UserLogin = () => {
   };
   return (
     <section className='h-[90%] flex flex-col justify-center items-center gap-8'>
-      <h1 className='text-2xl font-main font-bold'>Log in to Your Account</h1>
+      <h1 className=' text-xl sm:text-[22px] xl:text-2xl font-main font-bold'>
+        Log in to Your Account
+      </h1>
       <form
         onSubmit={handleSubmit}
-        className='flex flex-col gap-2 font-secondary font-medium'
+        className='flex flex-col items-center sm:items-start gap-2 font-secondary font-medium px-10'
       >
         <input
           type='email'
           placeholder='Enter your Email'
-          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
+          className='text-base border-2 border-[#CBD5E1]/20 w-[80%] sm:w-[22rem] lg:w-[24rem] xl:w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
           onChange={(e) => dispatch({ type: 'email', payload: e.target.value })}
         />
         <input
           type='password'
           placeholder='Enter your Password'
-          className='text-base border-2 border-[#CBD5E1]/20 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
+          className='text-base border-2 border-[#CBD5E1]/20 w-[80%] sm:w-[22rem] lg:w-[24rem] xl:w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
           onChange={(e) =>
             dispatch({ type: 'password', payload: e.target.value })
           }
@@ -71,7 +73,7 @@ const UserLogin = () => {
         <Link
           to='/dashboard'
           type='submit'
-          className='mt-8 w-[26rem] p-3 rounded-lg bg-[#005CE6] text-white text-base flex justify-center items-center'
+          className='mt-8  w-[80%] sm:w-[22rem] lg:w-[24rem] xl:w-[26rem]  p-3 rounded-lg bg-[#005CE6] text-white text-base flex justify-center items-center'
         >
           Continue
         </Link>
