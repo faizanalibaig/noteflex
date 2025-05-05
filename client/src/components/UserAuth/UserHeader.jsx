@@ -6,11 +6,14 @@ function UserHeader() {
   console.log(location);
 
   return (
-    <header className='h-[10%] flex justify-between items-center px-12'>
-      <Link to='/' className='font-bold text-2xl font-main'>
+    <header className='h-[10%] flex justify-between items-center px-5 sm:px-8 lg:px-10 xl:px-12 '>
+      <Link
+        to='/'
+        className='font-bold text-xl sm:text-[22px] xl:text-2xl font-main'
+      >
         noteflex
       </Link>
-      <h5 className='font-secondary text-base'>
+      <h5 className='font-secondary text-base hidden lg:block'>
         new here?{' '}
         {location.pathname === '/auth/login' ? (
           <Link
