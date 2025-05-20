@@ -106,4 +106,4 @@ UserSchema.statics.findByToken = async function (token) {
   }
 };
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
