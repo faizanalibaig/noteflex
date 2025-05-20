@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const cookieparser = require('cookie-parser');
+const morgan = require('morgan');
 require('dotenv').config;
 
 const dbconfig = require('./config/db.config');
@@ -10,7 +11,7 @@ dbconfig();
 const app = express();
 app.use(express.json());
 app.use(cookieparser());
-app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
 app.use(cors());
 app.use('/', IndexRoute);
