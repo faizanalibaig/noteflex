@@ -65,7 +65,7 @@ exports.retrieveAll = async (req, res) => {
   try {
     const notes = await Note.find();
     if (!notes) {
-      return res.status(500).send({
+      return res.status(204).send({
         success: false,
         message:
           'Not a single note is created yet - please write your first note',
