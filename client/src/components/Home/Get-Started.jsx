@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { BsArrowBarRight } from 'react-icons/bs';
 import { FaGithubAlt } from 'react-icons/fa';
@@ -7,6 +7,22 @@ import { MdNote } from 'react-icons/md';
 import { Link } from 'react-router';
 
 function GetStarted() {
+  const [path, setPath] = React.useState('/auth/login');
+
+  useEffect(() => {
+    const { innerWidth: width } = window;
+    const handlePathChange = () => {
+      if(width < 620){
+        setPath('/check-pc');
+      }
+    }
+
+    handlePathChange();
+    window.addEventListener('resize', handlePathChange);
+
+    return () => window.removeEventListener('resize', handlePathChange);
+  }, []);
+
   return (
     <section className='h-[92%] sm:h-[91%] lg:h-[90%] relative'>
       <section className='h-full flex justify-center items-center px-5 sm:px-28 lg:px-40 xl:px-60'>
@@ -47,7 +63,7 @@ function GetStarted() {
 
       <div className='absolute bottom-10 right-5 sm:right-12'>
         <Link
-          to='/auth/login'
+          to={path}
           className='flex items-center gap-2 outline-none font-secondary font-medium text-sm sm:text-base'
         >
           <span>get started</span> <BsArrowBarRight />
