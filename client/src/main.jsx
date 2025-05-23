@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter } from 'react-router';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';

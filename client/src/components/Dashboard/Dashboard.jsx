@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router";
 
 const data = [
   {
@@ -16,21 +17,23 @@ const data = [
 function Dashboard() {
   return (
     <main className='px-12 py-5 flex gap-4 flex-wrap'>
-      {data.map((d, i) => {
+      {data.map((item, index) => {
         return (
           <div
-            key={i}
+            key={index}
             className='w-[300px] h-[250px] flex flex-col justify-between bg-black/[0.03] rounded-[6px] p-4'
           >
             <div>
-              <h1 className='font-medium text-lg font-main'>{d.title}</h1>
-              <p className='font-secondary text-sm mt-3'>{d.description}</p>
+              <h1 className='font-medium text-lg font-main'>{item.title}</h1>
+              <p className='font-secondary text-sm mt-3'>{item.description}</p>
             </div>
 
             <div>
-              <h3 className='font-secondary text-sm underline underline-offset-2 cursor-pointer'>
+              <Link
+                  to={`/note/${item.title.toLowerCase().split(" ").join("-")}`}
+                  className='font-secondary text-sm underline underline-offset-2 cursor-pointer'>
                 view more
-              </h3>
+              </Link>
             </div>
           </div>
         );
