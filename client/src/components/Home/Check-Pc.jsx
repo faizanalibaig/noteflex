@@ -1,7 +1,7 @@
 export default function CheckPc() {
     return(
-        <div className='100-dvh 100dvw'>
-            <h1>Please, check the application on the laptop or pc</h1>
+        <div className="h-screen w-screen flex justify-center items-center">
+            <h1 className="font-main text-xl text-center">Please, check the application <br/> on the laptop or pc</h1>
         </div>
     )
 }
