@@ -14,15 +14,19 @@ function NoteRoutes() {
     <Routes>
         <Route path='/' element={<HomeLayout />} />
         <Route path='/check-pc' element={<CheckPc />} />
-        <Route path='/note/:name' element={<Note />} />
+
         <Route path='auth' element={<UserLayout />}>
-        <Route path='signup' element={<UserSignup />} />
-        <Route path='login' element={<UserLogin />} />
-      </Route>
-      <Route path='dashboard' element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path='create-note' element={<CreateNote />} />
-      </Route>
+         <Route path='signup' element={<UserSignup />} />
+         <Route path='login' element={<UserLogin />} />
+        </Route>
+
+
+        <Route path='note/:name' element={<Note />} />
+
+        <Route path='dashboard' element={<DashboardLayout />}>
+         <Route index element={<Dashboard />} />
+         <Route path='create-note' element={<CreateNote />} />
+        </Route>
     </Routes>
   );
 }
