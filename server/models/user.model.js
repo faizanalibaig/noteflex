@@ -89,15 +89,14 @@ UserSchema.methods.generatetoken = function () {
   const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: '1d',
   });
-  console.log('USER: ', this, 'TOKEN: ', token);
 
   return token;
 };
 
 UserSchema.statics.findByToken = async function (token) {
   try {
-    if (!process.env.JWT_SECRET) {
-    }
+    if (!token || !process.env.JWT_SECRET)
+      throw new Error('Issue in the token or JWT secret');
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     return await this.findOne({ _id: decoded.id });

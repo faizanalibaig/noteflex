@@ -20,7 +20,6 @@ async function verifyToken(req, res, next) {
     if (token.startsWith('Bearer ')) {
       token = token.split(' ')[1];
     }
-    console.log('token: ', token);
 
     const checkIfBlacklisted = await Blacklist.findOne({ token: token });
     if (checkIfBlacklisted) {
