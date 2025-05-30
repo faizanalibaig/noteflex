@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Link } from 'react-router';
+import { useNavigate} from 'react-router';
 
 const initialState = {
   email: '',
@@ -19,12 +19,13 @@ const reducer = (state, action) => {
 
 const UserLogin = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log('state: ', state);
+  let navigate = useNavigate();
+  // const login = localStorage.getItem('login');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await fetch('', {
+      const user = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,12 +37,14 @@ const UserLogin = () => {
       });
 
       if (!user.ok) {
-        throw new Error('Failed to create user');
+        navigate('/');
+        throw new Error('Failed to login user');
       }
-      const data = await user.json();
-      console.log('user data: ', data);
+
+      localStorage.setItem('login', true);
+      navigate('/dashboard');
     } catch (error) {
-      throw new Error('Failed to create user', error.message);
+      throw new Error(`Failed to login user: ${error.message}`);
     }
   };
   return (
@@ -55,12 +58,14 @@ const UserLogin = () => {
       >
         <input
           type='email'
+          value={state.email}
           placeholder='Enter your Email'
           className='text-base border-2 border-[#CBD5E1]/20 w-[80%] sm:w-[22rem] lg:w-[24rem] xl:w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
           onChange={(e) => dispatch({ type: 'email', payload: e.target.value })}
         />
         <input
           type='password'
+          value={state.password}
           placeholder='Enter your Password'
           className='text-base border-2 border-[#CBD5E1]/20 w-[80%] sm:w-[22rem] lg:w-[24rem] xl:w-[26rem] p-3 rounded-lg bg-[#FAFAF7] placeholder:text-[#5C626C] outline-none'
           onChange={(e) =>
@@ -70,13 +75,12 @@ const UserLogin = () => {
         <h5 className='text-sm cursor-pointer text-[#F37121]'>
           forgot password?
         </h5>
-        <Link
-          to='/dashboard'
+        <button
           type='submit'
           className='mt-8  w-[80%] sm:w-[22rem] lg:w-[24rem] xl:w-[26rem]  p-3 rounded-lg bg-[#005CE6] text-white text-base flex justify-center items-center'
         >
           Continue
-        </Link>
+        </button>
         <button
           type='submit'
           className='border-2 border-[#CBD5E1]/10 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] text-white flex justify-center 

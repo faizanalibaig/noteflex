@@ -48,6 +48,8 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
+
     const { error } = ValidateUserLogin({ email, password });
 
     if (error) {
@@ -70,7 +72,7 @@ exports.login = async (req, res) => {
     }
 
     let options = {
-      expires: 20 * 60 * 10000,
+      maxTime: 20 * 60 * 10000,
       httpOnly: true,
       secure: true,
     };

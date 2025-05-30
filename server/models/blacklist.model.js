@@ -6,12 +6,7 @@ const BlacklistSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Token is required'],
       ref: 'User',
-    },
-    userId: {
-      type: mongoose.Types.ObjectId,
-      required: [true, 'User ID is required'],
-      ref: 'User',
-    },
+    }
   },
   { timestamps: true }
 );
