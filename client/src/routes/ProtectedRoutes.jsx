@@ -1,20 +1,32 @@
-import { useEffect, useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
 export default function ProtectedRoutes() {
-    const [screen, setScreen] = useState(false);
-    const isLoggedIn = localStorage.getItem("login");
+  const [screen, setScreen] = useState(false);
+  const [user, setUser] = useState(null);
+  //   const isLoggedIn = localStorage.getItem('login');
 
-    useEffect(() => {
-        const { innerWidth: width } = window;
-        if (width < 620) {
-            setScreen(true);
-        }
-    }, []);
+  useEffect(async () => {
+    const data = await fetch('', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    });
 
-    if (!isLoggedIn) {
-        return screen ? <Navigate to="/check-pc" /> : <Navigate to="/auth/login" />;
+    if (!data) throw new Error('There is an error in the verifying user');
+    setUser(data);
+
+    const { innerWidth: width } = window;
+    if (width < 620) {
+      setScreen(true);
     }
+  }, []);
 
-    return <Outlet />;
+  if (!user) {
+    return screen ? <Navigate to='/check-pc' /> : <Navigate to='/auth/login' />;
+  }
+
+  return <Outlet />;
 }
