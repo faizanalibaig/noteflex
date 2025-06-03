@@ -6,6 +6,8 @@ require('dotenv').config();
 
 async function verifyToken(req, res, next) {
   try {
+    console.log('COOKIES: ', req.cookies);
+
     let token =
       req.body.token || req.headers['authorization'] || req.cookies.token;
     const secret = process.env.JWT_SECRET;

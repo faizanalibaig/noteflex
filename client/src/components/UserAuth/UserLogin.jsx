@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { useNavigate} from 'react-router';
+import { useNavigate } from 'react-router';
 
 const initialState = {
   email: '',
