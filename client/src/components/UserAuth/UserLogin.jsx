@@ -25,7 +25,7 @@ const UserLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await fetch('http://localhost:8000/auth/login', {
+      const user = await fetch(`${LOCAL_API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
