@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-const Note = require('../controllers/note.controller');
-const verifytoken = require('../middleware/verify-token');
+const Note = require('./note.controller');
+const verifytoken = require('../../middleware/verify-token');
 
 router.param('id', (req, res, next, id) => {
-    if(!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
-        return res.status(400).send({
-            message: "Invalid ID parameter"
-        })
-    }
+  if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.status(400).send({
+      message: 'Invalid ID parameter',
+    });
+  }
 
-    next();
-})
+  next();
+});
 
 router
   .route('/')

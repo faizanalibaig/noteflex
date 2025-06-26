@@ -1,5 +1,5 @@
-const Blacklist = require('../models/blacklist.model');
-const User = require('../models/user.model');
+const Blacklist = require('../modules/auth/blacklist.model');
+const User = require('../modules/auth/user.model');
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();

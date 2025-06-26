@@ -1,10 +1,10 @@
 const {
   ValidateUserRegistration,
   ValidateUserLogin,
-} = require('../validators/auth.validator');
+} = require('../../validators/auth.validator');
 
-const User = require('../models/user.model');
-const Blacklist = require('../models/blacklist.model');
+const User = require('./user.model');
+const Blacklist = require('./blacklist.model');
 
 exports.register = async (req, res) => {
   try {

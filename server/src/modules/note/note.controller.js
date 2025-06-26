@@ -1,5 +1,5 @@
-const Note = require('../models/note.model');
-const { ValidateNote } = require('../validators/note.validator');
+const Note = require('./note.model');
+const { ValidateNote } = require('../../validators/note.validator');
 
 exports.create = async (req, res) => {
   try {

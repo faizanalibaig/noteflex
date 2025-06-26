@@ -4,8 +4,8 @@ const cookieparser = require('cookie-parser');
 const morgan = require('morgan');
 require('dotenv').config;
 
-const dbconfig = require('./config/db.config');
-const IndexRoute = require('./routes/index.route');
+const dbconfig = require('./src/config/db.config');
+const IndexRoute = require('./index.route');
 
 dbconfig();
 const app = express();
