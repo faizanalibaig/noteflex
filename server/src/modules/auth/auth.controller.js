@@ -1,7 +1,7 @@
 const {
   ValidateUserRegistration,
   ValidateUserLogin,
-} = require('../../validators/auth.validator');
+} = require('../../config/validators/auth.validator');
 
 const User = require('./user.model');
 const Blacklist = require('./blacklist.model');

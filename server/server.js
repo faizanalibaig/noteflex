@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const cookieparser = require('cookie-parser');
 const morgan = require('morgan');
-require('dotenv').config;
+require('dotenv').config();
 
-const dbconfig = require('./src/config/db.config');
 const IndexRoute = require('./index.route');
+const dbconfig = require('./src/config/database/db.config');
 
 dbconfig();
 const app = express();
