@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Note = require('./note.controller');
-const verifytoken = require('../../middleware/verify-token');
+const verifytoken = require('../../config/middleware/verify-token');
 
 router.param('id', (req, res, next, id) => {
   if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
