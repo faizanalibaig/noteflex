@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 export default function ProtectedRoutes() {
   const [screen, setScreen] = useState(false);
-  const isLoggedIn = localStorage.getItem('login');
+  const [cookies] = useCookies(['login']);
+  const isLoggedIn = cookies.login ? true : false;
 
   useEffect(() => {
     const { innerWidth: width } = window;

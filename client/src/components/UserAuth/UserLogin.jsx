@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useCookies } from 'react-cookie';
 
 const initialState = {
   email: '',
@@ -19,13 +20,19 @@ const reducer = (state, action) => {
 
 const UserLogin = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  let navigate = useNavigate();
-  // const login = localStorage.getItem('login');
+  const [cookies, setCookie] = useCookies(['login']);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (cookies.login) {
+      console.log('Login cookie:', cookies.login);
+    }
+  }, [cookies.login]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await fetch(`${LOCAL_API_URL}/auth/login`, {
+      const response = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,17 +43,19 @@ const UserLogin = () => {
         }),
       });
 
-      if (!user.ok) {
+      if (!response.ok) {
         navigate('/');
         throw new Error('Failed to login user');
       }
 
-      localStorage.setItem('login', true);
+      const data = await response.json();
+      setCookie('login', data.token, { path: '/' });
       navigate('/dashboard');
     } catch (error) {
       throw new Error(`Failed to login user: ${error.message}`);
     }
   };
+
   return (
     <section className='h-[90%] flex flex-col justify-center items-center gap-8'>
       <h1 className=' text-xl sm:text-[22px] xl:text-2xl font-main font-bold'>
@@ -82,11 +91,11 @@ const UserLogin = () => {
           Continue
         </button>
         <button
-          type='submit'
-          className='border-2 border-[#CBD5E1]/10 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] text-white flex justify-center 
+          type='button'
+          className='border-2 border-[#CBD5E1]/10 w-[26rem] p-3 rounded-lg bg-[#FAFAF7] text-white flex justify-center
           items-center gap-3'
         >
-          <img src='/social-icon/google.png' className='h-5' />
+          <img src='/social-icon/google.png' className='h-5' alt='Google' />
           <h1 className='text-black text-base'>Continue with Google</h1>
         </button>
       </form>
